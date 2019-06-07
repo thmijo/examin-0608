@@ -1,0 +1,60 @@
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-2">  
+    <ul class="nav flex-column">
+<div *ngFor="let attempt of attempts; let i = index">
+<li class="nav-item">
+    <a class ='btn' ><i (click)="showResult(i)" class="la la-trash">{{attempt.id}}</i></a>   
+</li>
+</div>
+</ul>
+
+</div>
+<div class="col-sm-10">
+<div class="container">
+<div class = "row">
+    <div class="col-sm-3">  
+  </div>
+<div class="col-sm-6">
+  {{currentAttemptId}}
+<div *ngFor="let question of attemptDetails; let i = index">
+   <div class="card">
+      <div class="card-header"> {{i+1}}  {{question.q}}
+      </div>
+      <div class="card-body">
+      <table class="table table-dark table-sm" >
+      <tr> <td> Option 1 </td>
+       <td>
+        {{question.o1}}</td>
+        </tr>
+       <tr> <td> Option 2 </td>
+       <td>
+        {{question.o2}}</td>
+        </tr> 
+       <tr> <td> Option 3 </td>
+       <td>
+        {{question.o3}}</td>
+        </tr>
+        <tr> <td> Slected Answer </td>
+       <td>
+        {{question.sel}}</td>
+        </tr>
+                 <tr> <td> Right Answer </td>
+       <td>
+        {{question.ans}}</td>
+        </tr>
+
+        <tr *ngIf="question.sel===question.ans"><td> Correct Answer </td></tr>
+        <tr *ngIf="!(question.sel===question.ans)"> <td> Wrong Answer </td> </tr> 
+      </table>
+  </div>
+</div>
+</div>
+  <div class="col-sm-3">
+  </div>
+</div>
+</div>
+</div> 
+</div>
+</div>

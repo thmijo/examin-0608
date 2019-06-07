@@ -1,0 +1,79 @@
+<!--
+ <app-question *ngFor="let question of questions" q="{{question.q}}" o1="{{question.o1}}" o2="{{question.o2}}" o3="{{question.o3}}" qId="{{question.id}}" > 
+ </app-question>
+ -->
+<! --
+(Exam/Question Id : {{examId}}/{{questions[currentQuestionIndex]['id']}} ) ---- 
+Previous Id : {{previousQuestionIndex}} ----
+Next Id : {{nextQuestionIndex}} 
+-->
+
+
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+  
+	
+  <div class="container-fluid">
+  <div class="row">
+  <div class="col-sm-3"> </div> <div class="col-sm-6">  
+    <h1 class="mb-3" class="jumbotron text-left"> {{questions[currentQuestionIndex]['q']}} </h1>
+	<div class="d-block my-3 themed-grid-col ">
+		<div class="custom-control custom-radio text-left">
+			<input id="credit" name="Option" type="radio"  checked (click) = "rbClick(currentQuestionIndex,'o1')" class="custom-control-input" value="o1" ngModel selected required>
+  <label class="custom-control-label" for="credit">{{questions[currentQuestionIndex]['o1']}}</label>
+</div>
+<div class="custom-control custom-radio text-left">
+  <input id="debit" name="Option" type="radio" (click) = "rbClick(currentQuestionIndex,'o2')" class="custom-control-input" value="o2" ngModel required>
+  <label class="custom-control-label" for="debit"> {{questions[currentQuestionIndex]['o2']}}</label>
+</div>
+
+<div class="custom-control custom-radio text-left">
+  <input id="debit" name="Option" type="radio" (click) = "rbClick(currentQuestionIndex,'o3')" class="custom-control-input" value="o2" ngModel required>
+  <label class="custom-control-label" for="debit"> {{questions[currentQuestionIndex]['o3']}}</label>
+</div>
+<div class="col-sm-3">
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<!-- Display Buttons -->
+
+<button class="btn btn-primary" type="button" *ngIf="!(currentQuestionIndex===0)" (click)="getQuestion(previousQuestionIndex)">Prev</button>
+<button class="btn btn-primary" type="button" *ngIf="!(currentQuestionIndex===3)" (click)="getQuestion(nextQuestionIndex)"> Next</button>
+<button class="btn btn-success" type="submit" *ngIf="currentQuestionIndex===3">  Submit </button>
+</div>
+</form>
+
+<!-- ******************** code below will work only in debug mode ******** -->
+
+<div class="text-center">
+<table class="table" class="table table-hover table-bordered table-sm">
+<thead>
+<tr>
+  <th scope="col">#</th>
+  <th scope="col">Question</th>
+  <th scope="col">Option 1</th>
+  <th scope="col">Option 2</th>
+  <th scope="col">Option 3</th>
+  <th scope="col">Correct Ans</th>
+  <th scope="col">Selected Ans</th>
+</tr>
+</thead>
+<tbody *ngFor="let question of questions; let i = index">
+<tr>
+<th scope="row">{{i+1}}</th>
+<td>{{ question.q }}</td>
+<td>{{ question.o1 }}</td>
+<td>{{ question.o2 }}</td>
+<td>{{ question.o3 }}</td>
+<td>{{ question.ans }}</td>
+<td>{{ question.sel }}</td>   
+</tr>
+</tbody>
+</table>
+</div>

@@ -1,0 +1,30 @@
+
+
+<button class="btn btn-secondary" (click)= "addExam()"> Add Exam </button>
+
+<div class="text-center">
+  <table class="table table-hover table-bordered table-sm ">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Exam Name</th>
+      <th scope="col">Exam Desc</th>
+      <th scope="col">Link</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Load</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let exam of exams; let i = index">
+    <tr>
+      <th scope="row">{{i+1}}</th>
+      <td>{{ exam.eName }}</td>
+      <td>{{ exam.id }}</td>
+       <td><a routerLink="/exams/{{exam.id}}">
+          Start Exam
+      </a></td>
+      <td><button class="btn btn-danger" (click)="loadQuestions(exam.id)"> LoadQuestions </button></td>
+       <td><button class="btn btn-danger" (click)="deleteExam(exam.id)"> X </button></td>
+    </tr>
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,36 @@
+<p>
+user works!
+</p>
+ <p *ngFor="let user of users ; let i = index"> 
+   <button class="btn btn-primary"  (click)="getUserAttempts(user.id)"> 
+   {{user.id}} Get User Attempts
+   </button>
+
+   <button class="btn btn-primary"  (click)="addAttempt(user.id)"> 
+   Add {{user.id}} --- Add a dummy attempt
+   </button>
+ </p>
+
+ <div class="text-center">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">AttemptId</th>
+      <th scope="col">Attempt Link</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let attempt of attempts; let i = index">
+    <tr>
+      <th scope="row">{{i+1}}</th>
+      <td>{{ attempt.id }}</td>
+   <!--   <td>{{ attempt.attemptDetails }}</td> -->
+      <p *ngFor="let question of attempt.attemptDetails">
+          {{question.q}} <br/>
+          {{question.ans}} <br/>
+          {{question.sel}} <br/>
+      </p>
+    </tr>
+  </tbody>
+</table>
+</div>
