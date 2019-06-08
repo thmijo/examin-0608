@@ -2,11 +2,13 @@ import { Injectable } from "@angular/core";
 import {
   AngularFirestoreCollection,
   AngularFirestoreDocument,
-  AngularFirestore
+  AngularFirestore,
 } from "@angular/fire/firestore";
 import { map, tap } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { Question } from "./interfaces/question";
+//import { firestore } from 'firebase';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: "root"
@@ -19,7 +21,8 @@ export class UserService {
   attemptDocument: AngularFirestoreDocument;
   attemptId : string;
 
-  constructor(private afs: AngularFirestore) {}
+
+  constructor(private afs: AngularFirestore ) {}
 
  getUsers(): Observable<any[]> {
   //getQuestions(eId:string): Observable<any[]> {
@@ -77,11 +80,20 @@ updateAttempt(aId :string, attemptArray : string []) {
   this.afs.doc(`attempts/${aId}`).set({"attemptDetails" : attemptArray});
 }
 
-updateAttemptInUserCollection(uId:string,attemptIdArreay:any[]){
+updateAttemptInUserCollection(uId:string,attemptId:string){
   const newCity = {
       time: new Date()
     };
-    this.afs.doc(`users/${uId}`).set({"attemptDetails" : attemptIdArreay});
+
+       // this.afs.doc(`users/${uId}`).set({"attemptDetails" : attemptIdArreay});
+
+    this.afs.doc(`users/${uId}`).ref.update({"attemptDetails": firebase.firestore.FieldValue.arrayUnion(attemptId)})
+
+  console.log("updateAttemptInUserCollection");
+     
+       
+
+
 }
 /*addUserAttempts(uId:string) {
     const attempt = {

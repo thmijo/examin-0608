@@ -49,7 +49,7 @@ value : string = "temp";
       this.attemptIdArreay.push(docRef.id);
       this.attemptId = docRef.id;
       console.log("attempt written with ID: ", docRef.id);      
-      this.userService.updateAttemptInUserCollection(this.uId,this.attemptIdArreay);
+      this.userService.updateAttemptInUserCollection(this.uId,this.attemptId);
       }).catch( reason => {
         console.log(" errr "+ reason);
       });
