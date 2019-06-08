@@ -16,6 +16,7 @@ export class QuestionPaperComponent implements OnInit {
 questions: any = [];
 examId : string;
 questionIDs: any = [];
+question :any;
 currentQuestionId : string;
 currentQuestionIndex : number = 0;
 previousQuestionIndex : number;
@@ -30,7 +31,7 @@ uId : string = "arHiJ1xEbfjTRJbNnstz";
     console.log("my Exam id "+this.examId);
     this.questionService.getExamQuestion(this.examId).then(doc => {
        console.log (doc.data());
-       this.questionIDs = doc.data();
+       this.questionIDs = doc.data().questionRef;
     });
 
 
@@ -52,6 +53,14 @@ uId : string = "arHiJ1xEbfjTRJbNnstz";
     // console.log ("radio button clicked"+selectedOption);
      this.questions[i].sel = selectedOption;
   }
+
+showQuestion(i:number) {
+  console.log("geting question"+i+ "  "+this.questionIDs[0]);
+    this.questionService.getQuestion(this.questionIDs[0]).then(doc => {
+       console.log (doc.data());
+       this.question = doc.data();
+    });
+}  
 
 getQuestion(i:number) {
     console.log ("getttting values submitted"+this.signupForm.value.Option);

@@ -17,6 +17,7 @@ tempQId : string;
     console.log("Getting Questions");
     // console.log(this.questionService.getQuestions());
 
+    
     this.examService.getExams().subscribe(exams => {
       this.exams = exams;
      // console.log(this.exams);

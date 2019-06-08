@@ -17,6 +17,12 @@ export class QuestionService {
 
   constructor(private afs: AngularFirestore) {}
 
+   getQuestion(qId: string) {
+  //  return this.afs.doc(`questions/${qId}`);
+     const db = this.afs.firestore;
+     return db.collection('questions').doc(qId).get();
+  }
+
   getExamQuestion(eId:string) {
 
   const db = this.afs.firestore;
@@ -68,7 +74,5 @@ export class QuestionService {
     );
   } */
 
-  getQuestion(qId: string) {
-    return this.afs.doc(`questions/${qId}`);
-  }
+ 
 }

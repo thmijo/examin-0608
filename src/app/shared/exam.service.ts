@@ -52,9 +52,12 @@ export class ExamService {
     const attempt = {
      time: new Date(),
     };
+    console.log("adding dummy exam1");
     this.examCollection.add(attempt).then(docRef => {
     this.eId = docRef.id;
     console.log("Exam written with ID: ", docRef.id);   
+    }).catch( reason => {
+     console.log(" errr "+ reason);
     });
   }
 
