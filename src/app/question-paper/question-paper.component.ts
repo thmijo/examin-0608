@@ -22,6 +22,7 @@ currentQuestionIndex : number = -1;
 previousQuestionIndex : number;
 nextQuestionIndex : number = 1;
 attemptId : string = null;
+attemptArray : any = [];
 flag : boolean = false;
 uId : string = "arHiJ1xEbfjTRJbNnstz";
 value : string = "temp";
@@ -45,10 +46,8 @@ value : string = "temp";
   if(this.attemptId==null) {
       this.userService.createAttempt().then(docRef => {
       this.attemptId = docRef.id;
-      console.log("attempt written with ID: ", docRef.id);  
-      
+      console.log("attempt written with ID: ", docRef.id);      
       this.userService.updateAttemptInUserCollection(this.uId,this.attemptId);
-
       }).catch( reason => {
         console.log(" errr "+ reason);
       });
@@ -67,8 +66,10 @@ value : string = "temp";
     console.log ("value"+ this.value);
    // console.log ("radio button @@@"+this.signupForm.value.Option);
     console.log ("radio button clicked"+selectedOption);
+    console.log ("radio button answer"+this.question.ans);
   //   this.questions[i].sel = selectedOption;
-    
+    this.attemptArray[i] =this.question,selectedOption,this.question.ans;
+    this.userService.updateAttempt(this.attemptId,this.attemptArray);
     //update attempt table with id
   }
 

@@ -69,6 +69,10 @@ createAttempt() {
     return this.attemptsCollection.add(attempt)
 }
 
+updateAttempt(aId :string, attemptArray : string []) {
+   this.afs.doc(`users/${aId}`).set({"attemptDetails" : attemptArray});
+}
+
 updateAttemptInUserCollection(uId:string,attemptId:string){
   const newCity = {
       time: new Date()
