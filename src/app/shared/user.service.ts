@@ -70,7 +70,11 @@ createAttempt() {
 }
 
 updateAttempt(aId :string, attemptArray : string []) {
-   this.afs.doc(`users/${aId}`).set({"attemptDetails" : attemptArray});
+  console.log("array size ="+attemptArray.length);
+  const newCity = {
+      time: attemptArray
+  };
+  this.afs.doc(`attempts/${aId}`).set({"attemptDetails" : attemptArray});
 }
 
 updateAttemptInUserCollection(uId:string,attemptId:string){

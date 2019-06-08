@@ -39,7 +39,7 @@
         <div class="clearfix">
         <button class="btn btn-primary float-left" *ngIf="!(currentQuestionIndex===0)" (click)="showQuestion(currentQuestionIndex-1)"> Prev </button> 
         <button class="btn btn-primary float-right" *ngIf="!(currentQuestionIndex===(this.questionIDs.length-1))" (click)="showQuestion(currentQuestionIndex+1)"> Next </button> 
-        <button class="btn btn-success float-right" *ngIf="(currentQuestionIndex===(this.questionIDs.length-1))" (click)="showQuestion(currentQuestionIndex+1)"> Submit </button> 
+        <button class="btn btn-success float-right" *ngIf="(currentQuestionIndex===(this.questionIDs.length-1))" (click)="submitExam()"> Submit </button> 
         </div>
       </div>
     </div>

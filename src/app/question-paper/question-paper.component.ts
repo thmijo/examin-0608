@@ -66,9 +66,16 @@ value : string = "temp";
     console.log ("value"+ this.value);
    // console.log ("radio button @@@"+this.signupForm.value.Option);
     console.log ("radio button clicked"+selectedOption);
-    console.log ("radio button answer"+this.question.ans);
+    console.log ("radio button answer"+this.questionIDs[i]);
+     console.log ("radio button answer"+this.attemptId);
+    const tempattempt = {
+     qId: this.questionIDs[i],
+     ans : this.question.ans,
+     sel : selectedOption
+    };
   //   this.questions[i].sel = selectedOption;
-    this.attemptArray[i] =this.question,selectedOption,this.question.ans;
+    this.attemptArray[i] = tempattempt;
+    console.log(this.attemptArray);
     this.userService.updateAttempt(this.attemptId,this.attemptArray);
     //update attempt table with id
   }
@@ -100,15 +107,8 @@ getQuestion(i:number) {
       console.log(this.questions);
     });
   } */
-  onSubmit() {
-    console.log ("form submitted"+this.signupForm.value.Option);
-   // console.log ("form submitted"+this.signupForm.value.one);
-    //this.signupForm.reset();
-   
-  // console.log (this.questions);
-    
-    this.userService.addUserAttempts2('arHiJ1xEbfjTRJbNnstz', this.questions);
-  //  this.router.navigate(['../', { id: crisisId, foo: 'foo' }], { relativeTo: this.route });
+
+  submitExam() {
    this.router.navigate(['/results/'+this.uId],);
   }
 
