@@ -20,22 +20,11 @@
   {{currentAttemptId}}
 <div *ngFor="let question of attemptDetails; let i = index">
    <div class="card">
-      <div class="card-header"> {{i+1}}  {{question.q}}
+      <div class="card-header"> {{i+1}} .  {{question.qId}}
       </div>
       <div class="card-body">
       <table class="table table-dark table-sm" >
-      <tr> <td> Option 1 </td>
-       <td>
-        {{question.o1}}</td>
-        </tr>
-       <tr> <td> Option 2 </td>
-       <td>
-        {{question.o2}}</td>
-        </tr> 
-       <tr> <td> Option 3 </td>
-       <td>
-        {{question.o3}}</td>
-        </tr>
+      
         <tr> <td> Slected Answer </td>
        <td>
         {{question.sel}}</td>
