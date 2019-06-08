@@ -1,7 +1,7 @@
 
 
 {{questionIDs[0]}}
-<div class="container">
+<div *ngIf="currentQuestionIndex===-1" class="container">
   <div class="row">
     <div class="col-sm-4"></div>
     <div class="col-sm-4"></div>
@@ -13,13 +13,18 @@
   </div>
 </div>
 
-<div class="container">
+<div *ngIf="!(currentQuestionIndex===-1)" class="container">
   <div class="row">
     <div class="col-sm-4"></div>
     <div class="col-sm-4"></div>
     <div class="card align-center">
-      <div class="card-header"> Welcome to Exam </div>
-      <div class="card-body"> <button class="btn btn-primary" (click)="showQuestion(0)"> {{question.q}} </button> </div>
+      <div class="card-header"> Welcome to Exam </div>    
+      <div class="card-body"> 
+        {{question.q}}
+        <button class="btn btn-primary" (click)="showQuestion(currentQuestionIndex-1)"> Prev </button> <br>
+        <button class="btn btn-primary" (click)="showQuestion(currentQuestionIndex+1)"> Next </button> <br>
+        <button class="btn btn-primary" (click)="showQuestion(currentQuestionIndex+1)"> Submit </button> <br>
+      </div>
     </div>
     <div class="col-sm-4"></div>
   </div>
