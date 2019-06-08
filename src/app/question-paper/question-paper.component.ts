@@ -21,7 +21,8 @@ currentQuestionId : string;
 currentQuestionIndex : number = -1;
 previousQuestionIndex : number;
 nextQuestionIndex : number = 1;
-attemptId : string = null;
+attemptId :string = null;
+attemptIdArreay : any = [];
 attemptArray : any = [];
 flag : boolean = false;
 uId : string = "arHiJ1xEbfjTRJbNnstz";
@@ -45,9 +46,10 @@ value : string = "temp";
 
   if(this.attemptId==null) {
       this.userService.createAttempt().then(docRef => {
+      this.attemptIdArreay.push(docRef.id);
       this.attemptId = docRef.id;
       console.log("attempt written with ID: ", docRef.id);      
-      this.userService.updateAttemptInUserCollection(this.uId,this.attemptId);
+      this.userService.updateAttemptInUserCollection(this.uId,this.attemptIdArreay);
       }).catch( reason => {
         console.log(" errr "+ reason);
       });
