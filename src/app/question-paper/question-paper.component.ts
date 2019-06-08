@@ -21,8 +21,10 @@ currentQuestionId : string;
 currentQuestionIndex : number = -1;
 previousQuestionIndex : number;
 nextQuestionIndex : number = 1;
+attemptId : string = null;
 flag : boolean = false;
 uId : string = "arHiJ1xEbfjTRJbNnstz";
+value : string = "temp";
 
   constructor(private questionService: QuestionService,private userService : UserService, private route: ActivatedRoute, private router: Router) {}
 
@@ -39,6 +41,12 @@ uId : string = "arHiJ1xEbfjTRJbNnstz";
   
   }
   showQuestion(i:number) {
+
+  if(this.attemptId==null) {
+    //create attempt id
+    //update user/uid/ --> attemptDetails array
+  } 
+
   this.currentQuestionIndex = i;
   console.log("geting question"+i+ "  "+this.questionIDs[i]);
     this.questionService.getQuestion(this.questionIDs[i]).then(doc => {
@@ -57,9 +65,12 @@ uId : string = "arHiJ1xEbfjTRJbNnstz";
    } */
 
   rbClick(i:number,selectedOption:string) {
-    // console.log ("radio button @@@"+this.signupForm.value.Option);
-    // console.log ("radio button clicked"+selectedOption);
-     this.questions[i].sel = selectedOption;
+    console.log ("value"+ this.value);
+   // console.log ("radio button @@@"+this.signupForm.value.Option);
+    console.log ("radio button clicked"+selectedOption);
+  //   this.questions[i].sel = selectedOption;
+  
+    //update attempt table with id
   }
 
 getQuestion(i:number) {
@@ -91,7 +102,7 @@ getQuestion(i:number) {
   } */
   onSubmit() {
     console.log ("form submitted"+this.signupForm.value.Option);
-    console.log ("form submitted"+this.signupForm.value.one);
+   // console.log ("form submitted"+this.signupForm.value.one);
     //this.signupForm.reset();
    
   // console.log (this.questions);
