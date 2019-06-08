@@ -14,8 +14,10 @@ import { Question } from "./interfaces/question";
 export class UserService {
   userCollection: AngularFirestoreCollection;
   userDocument: AngularFirestoreDocument;
-  attemptsCollection: AngularFirestoreCollection = this.afs.collection('users');
+  usersCollection: AngularFirestoreCollection = this.afs.collection('users');
+  attemptsCollection: AngularFirestoreCollection = this.afs.collection('attempts');
   attemptDocument: AngularFirestoreDocument;
+  attemptId : string;
 
   constructor(private afs: AngularFirestore) {}
 
@@ -38,7 +40,7 @@ export class UserService {
       tap(data => console.log(JSON.stringify(data)))
     );
   }
-  getUserAttempts(uId:string): Observable<any[]> {
+ /* getUserAttempts(uId:string): Observable<any[]> {
   //getQuestions(eId:string): Observable<any[]> {
     //console.log(userId);
 
@@ -57,9 +59,23 @@ export class UserService {
       ),
       tap(data => console.log(JSON.stringify(data)))
     );
-  }
+  }*/
 
-addUserAttempts(uId:string) {
+createAttempt() {
+    const attempt = {
+     time: new Date(),
+    };
+    console.log("adding dummy attempt");
+    return this.attemptsCollection.add(attempt)
+}
+
+updateAttemptInUserCollection(uId:string,attemptId:string){
+  const newCity = {
+      time: new Date()
+    };
+    this.afs.doc(`users/${uId}`).set({"attemptDetails" : attemptId});
+}
+/*addUserAttempts(uId:string) {
     const attempt = {
       test : "Test attempt 333",
       time: new Date(),
@@ -72,9 +88,9 @@ addUserAttempts(uId:string) {
 }
   //getQuestion(qId: string) {
   //  return this.afs.doc(`questions/${qId}`);
-  //}
+  //} */
 
-addUserAttempts2(uId:string, questions : any[]) {
+/*addUserAttempts2(uId:string, questions : any[]) {
     const attempt = {
      // test : "Test attempt 333",
      // time: new Date(),
@@ -85,7 +101,7 @@ addUserAttempts2(uId:string, questions : any[]) {
     console.log("adding atempt for "+uId);
    //this.attemptsCollection = this.afs.collection(`users);
       return this.attemptsCollection.doc(uId).collection("attempts").add(attempt);
-}
+} */
   //getQuestion(qId: string) {
   //  return this.afs.doc(`questions/${qId}`);
   //}

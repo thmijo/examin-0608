@@ -43,8 +43,15 @@ value : string = "temp";
   showQuestion(i:number) {
 
   if(this.attemptId==null) {
-    //create attempt id
-    //update user/uid/ --> attemptDetails array
+      this.userService.createAttempt().then(docRef => {
+      this.attemptId = docRef.id;
+      console.log("attempt written with ID: ", docRef.id);  
+      
+      this.userService.updateAttemptInUserCollection(this.uId,this.attemptId);
+
+      }).catch( reason => {
+        console.log(" errr "+ reason);
+      });
   } 
 
   this.currentQuestionIndex = i;
@@ -55,21 +62,13 @@ value : string = "temp";
     }); 
   }  
 
- /*  ngOnInit() {
-    this.examId = this.route.snapshot.params['eId'];
-    console.log("my Exam id "+this.examId);
-    this.questionService.getExamQuestion(this.examId).subscribe(questions => {
-      this.questions = questions;
-      console.log("Logging exam quesiton"+this.questions);
-    });
-   } */
 
   rbClick(i:number,selectedOption:string) {
     console.log ("value"+ this.value);
    // console.log ("radio button @@@"+this.signupForm.value.Option);
     console.log ("radio button clicked"+selectedOption);
   //   this.questions[i].sel = selectedOption;
-  
+    
     //update attempt table with id
   }
 
