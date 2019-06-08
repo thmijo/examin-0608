@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent implements OnInit {
-  attempts : any = [];
+  attemptIDs : any = [];
   currentAttemptId : string;
   attemptDetails : any=[];
   uId : string;
@@ -18,16 +18,25 @@ export class ResultsComponent implements OnInit {
 
   ngOnInit() {
       this.uId = this.route.snapshot.params['uId'];
-      this.resultsService.getUserAttempts(this.uId).subscribe(attempts => {
-      this.attempts = attempts;
-      console.log(this.attempts);
+
+        this.resultsService.getUserAttemptIDs(this.uId).then(doc => {
+        console.log (doc.data());
+        this.attemptIDs = doc.data().attemptDetails;
     });
+
+    /*  this.resultsService.getUserAttemptIDs(this.uId).then(attempts => {
+      this.attemptIDs = attempts;
+      console.log(this.attemptIDs);
+    }); */
   }
 
-  showResult(index:number) {
-    this.currentAttemptId = this.attempts[index].id;
-    this.attemptDetails = this.attempts[index].attemptDetails;
-    console.log(" got attempts");
-  }
-
+  showResult(attemptId:string) {
+   // this.attemptDetails = 
+     // this.currentAttemptId = attemptId;
+     this.resultsService.getAttemptDetails(attemptId).then(doc => {
+        console.log (doc.data());
+        this.attemptDetails = doc.data().attemptDetails;
+        console.log(" got attempts");
+  });
 }
+} 

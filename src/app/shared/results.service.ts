@@ -19,6 +19,16 @@ export class ResultsService {
 
   constructor(private afs: AngularFirestore) {}
 
+  getUserAttemptIDs(uId:string) {
+      const db = this.afs.firestore;
+      return db.collection('users').doc(uId).get();
+  }
+
+  getAttemptDetails(aId:string) {
+      const db = this.afs.firestore;
+      return db.collection('attempts').doc(aId).get();
+  }
+
   getUserAttempts(uId:string): Observable<any[]> {
   
     console.log("Logging UId from service "+uId);

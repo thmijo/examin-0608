@@ -3,9 +3,9 @@
 <div class="row">
   <div class="col-sm-2">  
     <ul class="nav flex-column">
-<div *ngFor="let attempt of attempts; let i = index">
+<div *ngFor="let attemptID of attemptIDs; let i = index">
 <li class="nav-item">
-    <a class ='btn' ><i (click)="showResult(i)" class="la la-trash">{{attempt.id}}</i></a>   
+    <a class ='btn' ><i (click)="showResult(attemptID)" class="la la-trash">{{attemptID}}</i></a>   
 </li>
 </div>
 </ul>
